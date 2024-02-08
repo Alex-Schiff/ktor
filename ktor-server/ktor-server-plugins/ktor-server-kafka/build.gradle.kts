@@ -6,6 +6,7 @@ kotlin.sourceSets {
             api(project(":ktor-server:ktor-server-core"))
 
             api(libs.kafka.clients)
+            api(libs.kotlinx-coroutines-core-jvm)
         }
     }
     jvmTest {
@@ -15,6 +16,7 @@ kotlin.sourceSets {
             api(project(":ktor-server:ktor-server-core"))
 
             api(libs.kafka.embedded)
+            api(libs.kotlinx-coroutines-test)
 
             api(project(":ktor-server:ktor-server-core", configuration = "testOutput"))
         }

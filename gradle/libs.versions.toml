@@ -79,6 +79,7 @@ kotlinx-atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "a
 kotlinx-coroutines-debug = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-debug", version.ref = "coroutines-version" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines-version" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines-version" }
+kotlinx-coroutines-core-jvm = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm", version.ref = "coroutines-version" }
 kotlinx-coroutines-jdk8 = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-jdk8", version.ref = "coroutines-version" }
 kotlinx-coroutines-slf4j = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-slf4j", version.ref = "coroutines-version" }
 
@@ -181,5 +182,5 @@ swagger-codegen = { module = "io.swagger.codegen.v3:swagger-codegen", version.re
 swagger-codegen-generators = { module = "io.swagger.codegen.v3:swagger-codegen-generators", version.ref = "swagger-codegen-generators-version" }
 swagger-parser = { module = "io.swagger.parser.v3:swagger-parser", version.ref = "swagger-parser-version" }
 
-kakfa-clients = { module = "org.apache.kafka:kafka-clients", version.ref = "kafka-version" }
+kafka-clients = { module = "org.apache.kafka:kafka-clients", version.ref = "kafka-version" }
 kafka-embedded = { module = "io.github.embeddedkafka:embedded-kafka_3", version.ref = "kafka-version" }

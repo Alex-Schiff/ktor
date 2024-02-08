@@ -30,11 +30,15 @@ class KafkaProducerExtensionsTest {
     @Test
     fun sendAsyncWithoutCallbackShouldProduceRecord() = runTest {
         val data = "test"
+
         kafkaProducer.sendAsync(ProducerRecord<String, String>(TOPIC, data))
+
         val records = async {
             kafkaConsumer.subscribe(listOf(TOPIC))
             return@async kafkaConsumer.poll(Duration.ofSeconds(10))
         }.await()
+        kafkaConsumer.unsubscribe()
+        
         assertEquals(data, records.records(TOPIC).toList()[0].value())
     }
 }

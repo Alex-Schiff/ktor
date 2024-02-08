@@ -65,6 +65,8 @@ swagger-codegen-version = "3.0.52"
 swagger-codegen-generators-version = "1.0.46"
 swagger-parser-version = "2.1.20"
 
+kafka-version = "3.6.1"
+
 [libraries]
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin-version" }
 kotlin-stdlib-jdk7 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk7", version.ref = "kotlin-version" }
@@ -178,3 +180,6 @@ yamlkt-serialization = { module = "net.mamoe.yamlkt:yamlkt", version.ref = "yaml
 swagger-codegen = { module = "io.swagger.codegen.v3:swagger-codegen", version.ref = "swagger-codegen-version" }
 swagger-codegen-generators = { module = "io.swagger.codegen.v3:swagger-codegen-generators", version.ref = "swagger-codegen-generators-version" }
 swagger-parser = { module = "io.swagger.parser.v3:swagger-parser", version.ref = "swagger-parser-version" }
+
+kakfa-clients = { module = "org.apache.kafka:kafka-clients", version.ref = "kafka-version" }
+kafka-embedded = { module = "io.github.embeddedkafka:embedded-kafka_3", version.ref = "kafka-version" }

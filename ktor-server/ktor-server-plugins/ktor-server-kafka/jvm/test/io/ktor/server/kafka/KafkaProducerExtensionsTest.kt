@@ -8,6 +8,8 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.test.*
 import org.apache.kafka.clients.consumer.*
 import org.apache.kafka.clients.producer.*
+import org.apache.kafka.common.serialization.StringDeserializer
+import org.apache.kafka.common.serialization.StringSerializer
 import org.testcontainers.containers.*
 import org.testcontainers.junit.jupiter.*
 import org.testcontainers.junit.jupiter.Container
@@ -26,11 +28,21 @@ class KafkaProducerExtensionsTest {
     @Test
     fun sendAsyncWithoutCallbackShouldProduceRecord() = runTest {
         val kafkaProducer =
-            KafkaProducer<String, String>(mapOf(
-                ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to kafka.bootstrapServers,
-            ))
+            KafkaProducer<String, String>(
+                mapOf(
+                    ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to kafka.bootstrapServers,
+                    ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG to StringSerializer::class.qualifiedName,
+                    ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG to StringSerializer::class.qualifiedName
+                )
+            )
         val kafkaConsumer =
-            KafkaConsumer<String, String>(mapOf(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafka.bootstrapServers))
+            KafkaConsumer<String, String>(
+                mapOf(
+                    ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafka.bootstrapServers,
+                    ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.qualifiedName,
+                    ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.qualifiedName
+                )
+            )
         val data = "test"
 
         kafkaProducer.sendAsync(ProducerRecord<String, String>(TOPIC, data))
@@ -40,7 +52,7 @@ class KafkaProducerExtensionsTest {
             return@async kafkaConsumer.poll(Duration.ofSeconds(10))
         }.await()
         kafkaConsumer.unsubscribe()
-        
+
         assertEquals(data, records.records(TOPIC).toList()[0].value())
     }
 }

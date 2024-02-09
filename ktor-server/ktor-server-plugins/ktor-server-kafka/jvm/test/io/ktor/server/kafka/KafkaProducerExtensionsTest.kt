@@ -22,13 +22,15 @@ private const val TOPIC = "test-topic"
 class KafkaProducerExtensionsTest {
     @Container
     private val kafka: KafkaContainer = KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:latest"))
-    private val kafkaProducer =
-        KafkaProducer<String, String>(mapOf(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to kafka.bootstrapServers))
-    private val kafkaConsumer =
-        KafkaConsumer<String, String>(mapOf(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafka.bootstrapServers))
 
     @Test
     fun sendAsyncWithoutCallbackShouldProduceRecord() = runTest {
+        val kafkaProducer =
+            KafkaProducer<String, String>(mapOf(
+                ProducerConfig.BOOTSTRAP_SERVERS_CONFIG to kafka.bootstrapServers,
+            ))
+        val kafkaConsumer =
+            KafkaConsumer<String, String>(mapOf(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafka.bootstrapServers))
         val data = "test"
 
         kafkaProducer.sendAsync(ProducerRecord<String, String>(TOPIC, data))

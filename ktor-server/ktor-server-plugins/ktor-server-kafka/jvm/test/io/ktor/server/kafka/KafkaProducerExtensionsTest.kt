@@ -40,7 +40,8 @@ class KafkaProducerExtensionsTest {
                 mapOf(
                     ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafka.bootstrapServers,
                     ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.qualifiedName,
-                    ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.qualifiedName
+                    ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.qualifiedName,
+                    ConsumerConfig.GROUP_ID_CONFIG to "test-group"
                 )
             )
         val data = "test"
